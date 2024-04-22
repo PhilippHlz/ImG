@@ -1,0 +1,196 @@
+:root {
+    --text-primary-color: #000000;
+    --text-secondary-color: #aaaaaa;
+    --border-primary-color: #c4c4c4;
+    --border-secondary-color: #dcdcdc;
+    --background-primary-color: #ffffff;
+    --highlight-color: #ff7700;
+}
+
+/* Generelle Einstellungen */
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Avenir Medium", sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: var(--background-primary-color);
+    color: var(--text-primary-color);
+}
+
+.imgbutton {
+    display: block;
+    height: 30px;
+    width: 30px;
+    padding: 0px;
+    background-size: contain;
+    background-position: center;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    filter: invert(50%);
+    -webkit-filter: invert(50%);
+}
+
+/* ==========================================================================
+   Font-Style (Schrift Still)
+   ========================================================================== */
+
+/* In diesem Abschnitt werden die Schriftarten für die index.html-Datei gestylt. */
+
+h1 {
+    font-size: 1.5rem;
+    color: var(--text-primary-color);
+}
+
+h2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-primary-color);
+}
+
+p {
+    font-size: 0.8rem;
+    color: var(--text-secondary-color);
+}
+
+/* ==========================================================================
+   Header (Kopfzeile)
+   ========================================================================== */
+
+/**
+ * Gestaltung der Navigationsleiste (Header) auf der index.html Datei
+ *
+ * Der Header verwendet Flexbox, um die Elemente in einer Reihe anzuordnen und den verfügbaren Platz zwischen ihnen zu verteilen.
+ * Es gibt zwei Container, einen für die rechten und einen für die linken Elemente bzw. Buttons,
+ * die mit Flexbox ausgerichtet und mit einem Abstand zwischen den Elementen versehen werden.
+ *
+ */
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 5px;
+    box-sizing: border-box;
+    border-bottom: 5px solid var(--border-primary-color);
+}
+
+.right-header-container,
+.left-header-container {
+    display: inherit;
+    align-items: center;
+    gap: 10px
+}
+
+.menu-item {
+    background-image: url("./img/png/menu_FILL0_wght400_GRAD0_opsz24.png");
+}
+
+.grid-view-item {
+    background-image: url("./img/png/grid_view_FILL0_wght400_GRAD0_opsz24.png");
+}
+
+.add-item {
+    background-image: url("./img/png/add_FILL0_wght400_GRAD0_opsz24.png");
+}
+
+/* ==========================================================================
+   Main (Hauptbereich)
+   ========================================================================== */
+
+/**
+ * Gestaltung des Hauptbereichs (Main), der die eigentliche Playlist enthält.
+ *
+ * Der Hauptbereich ist vertikal scrollbar und hat eine obere Border, die auch beim Scrollen sichtbar bleibt.
+ * Die einzelnen Einträge der Playlist sind als 3x4 Raster angeordnet und enthalten alle Informationen zu einem Lied.
+ * Das Bild wird proportional skaliert, um die gleiche Größe beizubehalten und das Bild nicht zu strecken.
+ */
+
+main {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+ul {
+    border-top: 20px solid var(--border-secondary-color);
+}
+
+li {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: repeat(4, 1fr);
+    align-items: flex-start;
+    column-gap: 10px;
+    padding: 10px 10px 0px 10px;
+    border-bottom: 2px solid var(--text-secondary-color);
+}
+
+li:last-child {
+    border: 0px;
+}
+
+.song-img {
+    display: block;
+    width: 90px;
+    height: 90px;
+    grid-column: 1;
+    grid-row: 1 / 4;
+    object-fit: cover;
+}
+
+.song-play-container {
+    display: flex;
+    align-items: center;
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.play-item {
+    position: relative;
+    left: -10px;
+    background-image: url("./img/png/play_arrow_FILL0_wght400_GRAD0_opsz24.png");
+}
+
+.more-options-item {
+    align-self: center;
+    grid-column: 3;
+    grid-row: 3/5;
+    justify-self: end;
+    position: relative;
+    right: -10px;
+    background-image: url("./img/png/more_vert_FILL0_wght400_GRAD0_opsz24.png");
+}
+
+/* ==========================================================================
+   Footer (Fußzeile)
+   ========================================================================== */
+
+/**
+ * Gestaltung der Fußzeile (Footer) der Webseite.
+ *
+ * Der Footer wird horizontal angeordnet und verwendet Flexbox, um den verfügbaren Platz zwischen den Elementen zu verteilen.
+ * Ein oberer Border trennt den Footer visuell vom restlichen Inhalt der Seite.
+ */
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 5px;
+    box-sizing: border-box;
+    border-top: 5px solid var(--highlight-color);
+}
+
+.logout-item {
+    background-image: url("./img/png/logout_FILL0_wght400_GRAD0_opsz24.png");
+}
+
+.sync-item {
+    background-image: url("./img/png/sync_FILL0_wght400_GRAD0_opsz24.png");
+}
