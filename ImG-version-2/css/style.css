@@ -1,0 +1,321 @@
+/* ==========================================================================
+   Farbpalette
+   ========================================================================== */
+
+:root {
+    --text-primary-color: #000000;
+    --text-secondary-color: #aaaaaa;
+    --border-primary-color: #c4c4c4;
+    --border-secondary-color: #dcdcdc;
+    --background-primary-color: #ffffff;
+    --highlight-color: #ff7700;
+}
+
+/* ==========================================================================
+   Generelle Einstellungen
+   ========================================================================== */
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Avenir Medium", sans-serif;
+}
+
+/*
+ * Der Body wird als Flexbox dargestellt und die Ausrichtung von der Standardausrichtung row (Reihe) auf column (Spalte) geändert,
+ * damit die Inhalte im Body vertikal untereinander angeordnet werden.
+ * Die Höhe des Body wird anhand des Viewports festgelegt, sodass dieser immer die Höhe des Geräts einnimmt.
+ */
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: var(--background-primary-color);
+    color: var(--text-primary-color);
+}
+
+.imgbutton {
+    display: block;
+    height: 30px;
+    width: 30px;
+    padding: 0px;
+    background-size: contain;
+    background-position: center;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    filter: invert(50%);
+    -webkit-filter: invert(50%);
+}
+
+/* ==========================================================================
+   Font-Style (Schrift Still)
+   ========================================================================== */
+
+h1 {
+    font-size: 1.5rem;
+    color: var(--text-primary-color);
+}
+
+h2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-primary-color);
+}
+
+p {
+    font-size: 0.8rem;
+    color: var(--text-secondary-color);
+}
+
+/* ==========================================================================
+   Header (Kopfzeile)
+   ========================================================================== */
+
+/*
+ * Gestaltung der Navigationsleiste (Header)
+ *
+ * Der Header verwendet Flexbox, um die Elemente in einer Reihe anzuordnen und den verfügbaren Platz zwischen ihnen zu verteilen.
+ * Es gibt zwei Container, die Icons oder Text enthalten, einen für die rechten und einen für die linken Elemente.
+ * Beide Container wurden jeweils mit Flexbox ausgerichtet und zentriert und mit einem Abstand (Gap) zwischen den Elementen versehen.
+ */
+
+/*
+ * Der Hauptcontainer bestimmt, dass die Elemente in einer Reihe angeordnet werden (row) und trennt die Container mit einem angepassten Abstand dazwischen (space-between).
+ * Ausserdem wird der äussere Abstand durch Padding festgelegt. Es wird auch eine Border hinzugefügt, wobei das Box-Modell so angepasst wird, dass die Border die Grösse des Containers mit definiert.
+ */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box;
+    border-bottom: 5px solid var(--border-primary-color);
+}
+
+/*
+ * Die beiden Kinderelemente des Header-Containers werden ebenfalls als Flex-Container festgelegt und erhalten einen Abstand zwischen den Elementen durch eine Lücke (Gap).
+ * Hier werden auch die einzelnen Elemente in ihren Containern vertikal zentriert.
+ */
+.right-header-container,
+.left-header-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/*
+ * Icons werden in die Navigationsleiste eingefügt über ein Hintergrundbild.
+ * Die genauen Eigenschaften für diese Bilder werden in der Klasse .imgbutton festgelegt.
+ */
+.menu-item {
+    background-image: url("./img/png/menu_FILL0_wght400_GRAD0_opsz24.png");
+}
+
+.list-view-item {
+    background-image: url("./img/png/list_FILL0_wght400_GRAD0_opsz24.png");
+}
+
+.grid-view-item {
+    background-image: url("./img/png/grid_view_FILL0_wght400_GRAD0_opsz24.png");
+}
+
+.add-item {
+    background-image: url("./img/png/add_FILL0_wght400_GRAD0_opsz24.png");
+}
+
+/* ==========================================================================
+   Main (Hauptbereich)
+   ========================================================================== */
+
+/*
+ * Gestaltung des Hauptbereichs (Main), der die eigentliche Playlist enthält.
+ *
+ * Der Hauptbereich ist vertikal scrollbar und hat eine obere Border, die auch beim Scrollen sichtbar bleibt.
+ * Die Playlist kann entweder als List oder als Grid angezeigt werden.
+ */
+
+/*
+ * Im Hauptcontainer wird festgelegt, dass die Hauptsektion den gesamten verfügbaren Flexbereich (siehe das Elternelement "body") nutzen darf.
+ * Dadurch sind Header und Footer immer durch ihre inhaltliche Grösse definiert, und die Hauptsektion passt sich entsprechend dynamisch an.
+ * Zusätzlich wird das Scrollen entlang der y-Achse ermöglicht, während der Inhalt, der sich horizontal erstrecken könnte, verborgen bleibt.
+ */
+main {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/*
+ * Gestaltung des Hauptbereichs (Main) als formatierte Liste.
+ * 
+ * Wenn diese Abschnitte bzw. Klassen im HTML verwendet werden, werden ul, li und ihre Inhalte entsprechend einer Liste formatiert.
+ * Die Listeneinträge (li) sind als 3x4 Grid formatiert und enthalten alle wichtigen Informationen und Funktionen zu einem Song.
+ */
+
+/* Eine obere Border wird der ul (.playlist-list-view Klasse) hinzugefügt, um die Playlist farblich vom Header zu trennen. Diese Border verschwindet jedoch beim Scrollen. */
+.playlist-list-view {
+    border-top: 20px solid var(--border-secondary-color);
+}
+
+/*
+ * Die li (.playlist-container-list-view) wird als 3x4 Grid dargestellt, wobei sich die linke und rechte Spalte dem Inhalt anpasst und die Mitte den Rest ausfüllt.
+ * Jede Spalte wird in 4 gleich grosse Abschnitte unterteilt und die Inhalte werden zunächst links ausgerichtet, wobei eine Lücke (Gap) zwischen den Spalten besteht, um den Inhalt zu trennen.
+ * Die einzelnen Einträge erhalten zusätzlich einen Abstand zu anderen Einträgen und zum Rand sowie eine Abschlusslinie am Ende, um die Inhalte weiter zu trennen.
+ */
+.playlist-container-list-view {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: repeat(4, 1fr);
+    align-items: flex-start;
+    column-gap: 10px;
+    padding: 10px 10px 0px 10px;
+    border-bottom: 2px solid var(--text-secondary-color);
+}
+
+/* Die Border des letzten Elements in der Liste (li) wird entfernt. */
+.playlist-container-list-view:last-child {
+    border: 0;
+}
+
+/*
+ * Das Bild wird mit einer festen Grösse und Breite definiert und seine Position im Grid wird festgelegt, sodass es sich in der ersten Spalte befindet und die Zeilen 1 bis 3 einnimmt.
+ * Ausserdem wird festgelegt, dass die Bilder ihre Proportionen beibehalten und den Bildrahmen komplett bedecken.
+ */
+.song-img-list-view {
+    width: 90px;
+    height: 90px;
+    grid-column: 1;
+    grid-row: 1 / 4;
+    object-fit: cover;
+}
+
+/*
+ * Dieser Container enthält das Play-Icon und die Anzahl der Wiedergaben. Er wird als Flexbox dargestellt, sodass die Inhalte in einer Reihe angeordnet werden.
+ * Die Inhalte des Containers werden vertikal zentriert und der Container erhält seine Position im Grid, die der zweiten Spalte und dritten Zeile entspricht.
+ */
+.song-play-container {
+    display: flex;
+    align-items: center;
+    grid-column: 2;
+    grid-row: 3;
+}
+
+/* Das Play-Icon wird relativ zu seiner Position im Grid positioniert und um -10px nach links verschoben, um den vorhandenen Weissenraum zu berücksichtigen. */
+.play-item {
+    position: relative;
+    left: -10px;
+    background-image: url("./img/png/play_arrow_FILL0_wght400_GRAD0_opsz24.png");
+}
+
+/*
+ * Das More-Icon wird vertikal zentriert und ans Ende seines Grid-Abschnitts verschoben, um rechts angeordnet zu sein.
+ * Das Element erhält eine zusätzliche Spalte, um die Mitte zwischen diesen beiden Spalten zu nutzen und das More-Icon passend auszurichten (Pfeilspitze Play-Icon).
+ * Auch dieses Icon wird relativ zu seiner Position verschoben, um den Weissenraum um das Bild zu berücksichtigen.
+ */
+.more-options-item-list-view {
+    align-self: center;
+    justify-self: end;
+    grid-column: 3;
+    grid-row: 3/5;
+    position: relative;
+    right: -10px;
+    background-image: url("./img/png/more_vert_FILL0_wght400_GRAD0_opsz24.png");
+}
+
+/*
+ * Gestaltung des Hauptbereichs (Main), formatiert als Grid.
+ *
+ * Der Main bereich kann auch als Grid ansicht dargestellt werden was mit einem dynamischen Grid passiert.
+ * Das grid passt die Grösse der einzelnen Elemente an wenn diese das min unterschreiten wird ein umbruch gemacht.
+ * Wenn kein Umbruch gemacht werden muss dann werden die inhalte auf maximal 160px skaliert.
+ * Die informationen zum Song werden werden komprimiert und nur noch das more Symole wird angezeigt.
+ */
+
+/*
+ * Die Playlist (ul) wird als Grid dargestellt, wobei die Spalten und Zeilen automatisch angepasst werden.
+ * Jede Zelle des Grids ist mindestens 100px breit, und bei ausreichend Platz wird die Position dynamisch angepasst.
+ * Der Abstand (Gap) zwischen den Grid-Elementen beträgt 10px, und die ul erhält zusätzlich ein Padding von 10px. 
+ * Die Listenpunkte werden entfernt und eine obere Border, genau wie bei der List view, wird hinzugefügt, um die Playlist farblich vom Header zu trennen.
+ */
+.playlist-grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-gap: 10px;
+    padding: 10px;
+    list-style: none;
+    border-top: 20px solid var(--border-secondary-color);
+}
+
+/*
+ * Die Listeneinträge (li) werden so angepasst, dass sie eine maximale Breite von 160px haben, um übermäßiges Ausdehnen zu verhindern.
+ * Das Verhältnis des Containers wird auf 1:1 skaliert.
+ * Die Einträge werden außerdem relativ positioniert, um als Referenz für das More-Icon zu dienen.
+ */
+.playlist-container-grid-view {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 160px;
+    max-height: 160px;
+    aspect-ratio: 1 / 1;
+}
+
+/* Das Bild wird so angepasst, dass es 100% des Containers (li) einnimmt, dabei seine Proportionen beibehält und nicht verzerrt wird. */
+.song-img-grid-view {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Inhalte, die bei der Grid-Formatierung nicht sichtbar sein sollen, werden ausgeblendet. */
+p,
+h2,
+.song-play-container {
+    display: none;
+}
+
+/* Das More-Icon wird absolut positioniert innerhalb seines Elterncontainers und invertiert, um auf dem Bild sichtbar zu sein. */
+.more-options-item-grid-view {
+    position: absolute;
+    bottom: 5px;
+    right: 0px;
+    filter: invert(100%);
+    -webkit-filter: invert(100%);
+    background-image: url("./img/png/more_vert_FILL0_wght400_GRAD0_opsz24.png");
+}
+
+/* ==========================================================================
+   Footer (Fusszeile)
+   ========================================================================== */
+
+/*
+ * Gestaltung der Fusszeile (Footer) der Webseite.
+ *
+ * Der Footer wird horizontal angeordnet und verwendet Flexbox, um den verfügbaren Platz zwischen den Elementen zu verteilen.
+ * Ein oberer Border trennt den Footer visuell vom restlichen Inhalt der Seite.
+ */
+
+/*
+  * Der Footer wird wie der Header auch als Flex dargestellt und als Reihe (row) wiedergeben.
+  * Die Icons werde wieder voneiander getrennt (space-beetwen) udn eine Border wird hizugefügt
+  */
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 5px;
+    box-sizing: border-box;
+    border-top: 5px solid var(--highlight-color);
+}
+
+/*
+ * Icons werden in die Fusszeile eingefügt über ein Hintergrundbild.
+ * Die genauen Eigenschaften für diese Bilder werden in der Klasse .imgbutton festgelegt.
+ */
+.logout-item {
+    background-image: url("./img/png/logout_FILL0_wght400_GRAD0_opsz24.png");
+}
+
+.sync-item {
+    background-image: url("./img/png/sync_FILL0_wght400_GRAD0_opsz24.png");
+}
