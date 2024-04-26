@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>IAM Greenfield</title>
+    <!-- add style -->
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/jsl.js" defer></script>
+    <!-- add interaction control -->
+    <script type="application/javascript" src="js/jsr.js"></script>
+    <!-- add the "library" script wrapping XMLHttpRequest -->
+    <script type="application/javascript" src="js/lib/xhr.js"></script>
+</head>
+
+
+<body>
+    <!-- Kopfzeile -->
+    <header>
+        <div class="left-header-container">
+            <button class="imgbutton menu-item"></button>
+            <h1>Medien</h1>
+        </div>
+        <div class="right-header-container">
+            <button id="change-view-button" class="imgbutton list-view-item"></button>
+            <button class="imgbutton add-item"></button>
+        </div>
+    </header>
+
+    <!-- Hauptbereich (Playlist) -->
+    <main>
+        <ul id="playlist" class="playlist-list-view">
+            <li class="playlist-container-list-view">
+                <img class="song-img-list-view" src="css/img/sample.jpg" alt="Song Image">
+                <p>lorempixel.com</p>
+                <p>22.02.2016</p>
+                <h2>M1</h2>
+                <div class="song-play-container">
+                    <button class="imgbutton play-item"></button>
+                    <p>0</p>
+                </div>
+                <button class="imgbutton more-options-item-list-view"></button>
+            </li>
+        </ul>
+    </main>
+
+    <!-- Fusszeile -->
+    <footer>
+        <button class="imgbutton logout-item"></button>
+        <button class="imgbutton sync-item"></button>
+    </footer>
+</body>
+
+</html>
