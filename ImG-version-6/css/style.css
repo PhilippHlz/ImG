@@ -159,11 +159,11 @@ main {
     transition: opacity 1s;
 }
 
-.playlist-list-view {
-    border-top: 20px solid var(--border-secondary-color);
-    transition: opacity 1s;
-}
-
+/*
+* Gemäß Aufgabe: JSL1 - Anforderung 2, hat playlist-list-view lediglich beim ersten (initialen) togglePlaylist() Aufruf eine transition Geschwindigkeit von 2s,
+* während alle nachkommenden togglePlaylist() Aufrufe eine transition Geschwindigkeit von 1s haben. Dementsprechedn wird die Klasse initial nach dem ersten 
+* togglePlaylist() Aufruf auch entfernt
+*/
 .playlist-list-view.initial {
     transition: opacity 2s;
 }
