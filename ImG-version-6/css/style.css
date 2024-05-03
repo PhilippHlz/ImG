@@ -111,13 +111,14 @@ header {
     background-image: url("./img/png/menu_FILL0_wght400_GRAD0_opsz24.png");
 }
 
+.grid-view-item {
+    background-image: url("./img/png/grid_view_FILL0_wght400_GRAD0_opsz24.png");
+}
+
 .list-view-item {
     background-image: url("./img/png/list_FILL0_wght400_GRAD0_opsz24.png");
 }
 
-.grid-view-item {
-    background-image: url("./img/png/grid_view_FILL0_wght400_GRAD0_opsz24.png");
-}
 
 .add-item {
     background-image: url("./img/png/add_FILL0_wght400_GRAD0_opsz24.png");
@@ -155,6 +156,15 @@ main {
 /* Eine obere Border wird der ul (.playlist-list-view Klasse) hinzugefügt, um die Playlist farblich vom Header zu trennen. Diese Border verschwindet jedoch beim Scrollen. */
 .playlist-list-view {
     border-top: 20px solid var(--border-secondary-color);
+    transition: opacity 1s;
+}
+
+/*
+* Gemäß Aufgabe: JSL1 - Anforderung 2, hat playlist-list-view lediglich beim ersten (initialen) togglePlaylist() Aufruf eine transition Geschwindigkeit von 2s,
+* während alle nachkommenden togglePlaylist() Aufrufe eine transition Geschwindigkeit von 1s haben. Dementsprechedn wird die Klasse initial nach dem ersten 
+* togglePlaylist() Aufruf auch entfernt
+*/
+.playlist-list-view.initial {
     transition: opacity 2s;
 }
 
