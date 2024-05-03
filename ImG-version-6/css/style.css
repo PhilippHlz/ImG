@@ -111,13 +111,14 @@ header {
     background-image: url("./img/png/menu_FILL0_wght400_GRAD0_opsz24.png");
 }
 
+.grid-view-item {
+    background-image: url("./img/png/grid_view_FILL0_wght400_GRAD0_opsz24.png");
+}
+
 .list-view-item {
     background-image: url("./img/png/list_FILL0_wght400_GRAD0_opsz24.png");
 }
 
-.grid-view-item {
-    background-image: url("./img/png/grid_view_FILL0_wght400_GRAD0_opsz24.png");
-}
 
 .add-item {
     background-image: url("./img/png/add_FILL0_wght400_GRAD0_opsz24.png");

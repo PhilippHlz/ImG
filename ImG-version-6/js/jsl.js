@@ -62,7 +62,7 @@ function togglePlaylist() {
     changeListItemView(playlist);
 
     // Button wird geändert
-    changeViewButton.classList.toggle('grid-view-item');
+    changeViewButton.classList.toggle('list-view-item');
 
     // Inhalt wird wieder eingeblendet
     toggleOpacity(playlist);
