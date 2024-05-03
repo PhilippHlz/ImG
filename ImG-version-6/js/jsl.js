@@ -1,6 +1,7 @@
 // Zugriff auf die Elemente 'change-view-button' und 'playlist' aus index.html
 const changeViewButton = document.getElementById('change-view-button');
 const playlist = document.getElementById('playlist');
+let isInitialToggle = true
 
 /*
  * Fügt einen Event-Listener zum 'change-view-button' hinzu. Dieser löst die Funktion 'togglePlaylist' aus, wenn auf den Button geklickt wird.
@@ -64,6 +65,11 @@ function togglePlaylist() {
     // Button wird geändert
     changeViewButton.classList.toggle('list-view-item');
 
+    // remove initial class toggle
+    if (isInitialToggle) {
+      playlist.classList.remove("initial")
+      isInitialToggle = false
+    }
     // Inhalt wird wieder eingeblendet
     toggleOpacity(playlist);
     playlist.removeEventListener('transitionend', handler);
