@@ -8,6 +8,7 @@ export default class ListviewViewController extends mwf.ViewController {
   crudops;
 
   addNewMediaItemElement;
+  toggleRemoteBtn;
 
   constructor() {
     super();
@@ -26,6 +27,7 @@ export default class ListviewViewController extends mwf.ViewController {
       item: newItem,
       actionBindings: {
         submitForm: (event) => {
+          // TODO: distinguish between indexedDB and REST abi calls here
           event.original.preventDefault();
           newItem.create().then(() => {
             this.addToListview(newItem);
@@ -74,9 +76,21 @@ export default class ListviewViewController extends mwf.ViewController {
   }
 
   async oncreate() {
-    entities.MediaItem.readAll().then((items) => {
-      this.initialiseListview(items);
-    });
+
+      /**
+        * listen on CRUDScopeUpdated Event to: 
+        * refetch the data from the local/clientside data (IndexedDB)
+        * -> if currentCRUDScope === "local"
+        *
+        * or refetch the data from remote/serverside (mongoDB)
+        * -> if currentCRUDScope === "remote"
+      */
+      window.addEventListener("CRUDScopeUpdated", (e) => {
+        console.log(e)
+        entities.MediaItem.readAll().then((items) => {
+          this.initialiseListview(items);
+        });
+      })
 
     this.addNewMediaItemElement = this.root.querySelector('#addNewMediaItem');
     this.addNewMediaItemElement.onclick = () => {
