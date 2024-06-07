@@ -55,7 +55,7 @@ class MyApplication extends mwf.Application {
 
     // TODO: using setTimeout is an ugly workaround because the DOMs from the Controllers aren't initialized yet
     // therefore we need to wait 200ms until they got initialized - so we can access their DOM-Elements
-    // maybe try dom sth like documentaddEventListener("DOMContentLoaded", (event) => {}); instead
+    // maybe try sth like this instead: documentaddEventListener("DOMContentLoaded", (event) => {}); 
     setTimeout(() => {
       // dispatch initial scope - see line 48 above (this.initialiseCRUD(this.CRUDOPS.LOCAL, EntityManager);)
       this.dispatchUpdatedCRUDScope(this.CRUDOPS.LOCAL)
@@ -87,12 +87,12 @@ class MyApplication extends mwf.Application {
     
   }
 
-  /***********************
+  /************************
    * ****** helpers *******
-   **********************/
+   ***********************/
 
   /**
-   * new event that signalise other Controllers (i.e. ListviewViewController) that
+   * dispatches new event that signalise other Controllers (i.e. ListviewViewController) that
    * the CRUDScope has changed - and therefore the data needs to be refetched
    * @param {*} newScope "local" | "remote" | "synced"
    */
