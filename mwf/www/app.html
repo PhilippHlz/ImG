@@ -81,7 +81,7 @@
         <main>
             <ul>
                 <!-- Menüpunkt mit löschen und editieren des Mediums -->
-                <li class="mwf-li-singletitle mwf-menu-item" data-mwf-targetaction="deleteItem">Löschen</li>
+                <li class="mwf-li-singletitle mwf-menu-item" data-mwf-targetaction="deleteItemWithConfirm">Löschen</li>
                 <li class="mwf-li-singletitle mwf-menu-item" data-mwf-targetaction="editItem">Editieren</li>
             </ul>
         </main>
@@ -110,6 +110,29 @@
                     <!-- Speichern-Button: "Ändern" oder "Hinzufügen" basierend auf dem Zustand des Mediums -->
                     <input class="mwf-button-prio mwf-right-align mwf-button" type="submit"
                         value="{{#if item.created}}Ändern{{else}}Hinzufügen{{/if}}" />
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <!-- ======================== Confirm-Dialog für Delete Medien ======================== -->
+
+    <div class="mwf-dialog mwf-popup mwf-template mwf-databind mwf-view-component"
+        data-mwf-viewcontroller="GenericDialogTemplateViewController" data-mwf-templatename="mediaItemConfirmDeleteDialog">
+        <main>
+            <!-- Dialogtitel: "Medium editieren" oder "Neues Medium" basierend auf dem Zustand des Mediums -->
+            <h2>Medium löschen</h2>
+            <!-- Formular zum Hinzufügen/Bearbeiten von Medien -->
+            <form id="itemEditForm" on-submit="submitForm">
+                <p style="color: black;">Möchten Sie das Medium {{item.title}} löschen</p>
+                <!-- Buttonbar mit Lösch- und Speichern-Buttons -->
+                <div class="mwf-buttonbar">
+                    <!-- Lösch-Button: Nur aktiv, wenn das Medium bereits erstellt wurde -->
+                    <button class="mwf-left-align mwf-button" type="button" on-click="cancelDeleteItem">abbrechen
+                    </button>
+                    <!-- Speichern-Button: "Ändern" oder "Hinzufügen" basierend auf dem Zustand des Mediums -->
+                    <input class="mwf-button-prio mwf-right-align mwf-button" type="submit"
+                        value="Löschen" />
                 </div>
             </form>
         </main>

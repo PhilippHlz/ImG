@@ -27,7 +27,6 @@ export default class ListviewViewController extends mwf.ViewController {
       item: newItem,
       actionBindings: {
         submitForm: (event) => {
-          // TODO: distinguish between indexedDB and REST abi calls here
           event.original.preventDefault();
           newItem.create().then(() => {
             this.addToListview(newItem);
@@ -49,6 +48,25 @@ export default class ListviewViewController extends mwf.ViewController {
     });
   }
 
+  deleteItemWithConfirm(item) {
+    this.showDialog('mediaItemConfirmDeleteDialog', {
+      item: item,
+      actionBindings: {
+        submitForm: (event) => {
+          event.original.preventDefault();
+          item.delete().then(() => {
+            this.removeFromListview(item._id);
+            this.hideDialog();
+          });
+        },
+        cancelDeleteItem: () => {
+          this.hideDialog()
+        }
+      },
+    });
+  }
+
+
   /**
    * Öffnet den Dialog, der beim Löschen oder Bearbeiten eines Listeneintrags verwendet wird.
    * Es wird die Möglichkeit gegeben, ein Item zu bearbeiten oder zu löschen.
@@ -57,6 +75,7 @@ export default class ListviewViewController extends mwf.ViewController {
    * @return {void} Diese Funktion gibt nichts zurück.
    */
   editItem(item) {
+    console.log("editem item executed")
     this.showDialog('mediaItemDialog', {
       item: item,
       actionBindings: {
@@ -77,20 +96,20 @@ export default class ListviewViewController extends mwf.ViewController {
 
   async oncreate() {
 
-      /**
-        * listen on CRUDScopeUpdated Event to: 
-        * refetch the data from the local/clientside data (IndexedDB)
-        * -> if currentCRUDScope === "local"
-        *
-        * or refetch the data from remote/serverside (mongoDB)
-        * -> if currentCRUDScope === "remote"
-      */
-      window.addEventListener("CRUDScopeUpdated", (e) => {
-        console.log(e)
-        entities.MediaItem.readAll().then((items) => {
-          this.initialiseListview(items);
-        });
-      })
+    /**
+      * listen on CRUDScopeUpdated Event to: 
+      * refetch the data from the local/clientside data (IndexedDB)
+      * -> if currentCRUDScope === "local"
+      *
+      * or refetch the data from remote/serverside (mongoDB)
+      * -> if currentCRUDScope === "remote"
+    */
+    window.addEventListener("CRUDScopeUpdated", (e) => {
+      console.log(e)
+      entities.MediaItem.readAll().then((items) => {
+        this.initialiseListview(items);
+      });
+    })
 
     this.addNewMediaItemElement = this.root.querySelector('#addNewMediaItem');
     this.addNewMediaItemElement.onclick = () => {
